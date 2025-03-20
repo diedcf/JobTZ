@@ -1,6 +1,6 @@
 <meta>
 	<info name="JobTZ" />
 	<oop>true</oop>
-	<script src="c.lua" type="client" cache="false" />
 	<script src="s.lua" type="server" />
+	<script src="c.lua" type="client" cache="false" />
 </meta>
