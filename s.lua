@@ -1,12 +1,10 @@
-local PICKUP_RESPAWN = 0
 local WORKER_SKIN = 27
-local BOX_MODEL = 1271
 local COOLDOWN = 1000
 local jobPickup = nil
 local playerData = {}
 
 function createJobPickup()
-    jobPickup = createPickup(219.294, -151.418, 1.378, 3, 1275, PICKUP_RESPAWN)
+    jobPickup = createPickup(219.294, -151.418, 1.378, 3, 1275, 0)
     createBlipAttachedTo(jobPickup, 55, 2, 0, 0, 255, 255, 0, 200)
     
     -- Маркеры работы (исправлено)
@@ -92,11 +90,11 @@ function onMarkerHit(hitElement)
     
     if markerID == "work_start" and not playerData[hitElement].box then
         -- Создание коробки
-        local box = createObject(BOX_MODEL, 0,0,-1000)
+        local box = createObject(1271,0,0,-10)
         setElementCollisionsEnabled(box, false)
         playerData[hitElement].box = box
         triggerClientEvent(hitElement, "onClientAnimation", hitElement, "liftup")
-        triggerClientEvent(hitElement, "onClientBoxAttach", hitElement, playerData[hitElement].box, hitElement)
+        triggerClientEvent(hitElement, "onClientBoxAttach", hitElement, box, hitElement)
         
     elseif markerID == "work_finish" and playerData[hitElement].box then
         -- Удаление коробки и начисление оплаты
